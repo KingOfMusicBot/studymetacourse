@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     try {
       await signIn(email, password)
@@ -26,18 +26,20 @@ export default function LoginPage() {
 
       {error && <p className="text-red-600">{error}</p>}
 
-      <form onSubmit={handleLogin} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
           placeholder="Email"
           className="w-full border p-2"
           onChange={e => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Password"
           className="w-full border p-2"
           onChange={e => setPassword(e.target.value)}
+          required
         />
         <button className="w-full bg-black text-white p-2">
           Login
